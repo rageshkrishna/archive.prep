@@ -5,7 +5,7 @@ export ARTIFACTS_BUCKET="s3://shippable-artifacts"
 export VERSION=master
 
 set_context() {
-  export RES_REPO="$CONTEXT_repo"
+  export RES_REPO=$CONTEXT"_repo"
   export ARTIFACT_TAR="/tmp/$CONTEXT-$VERSION.tar.gz"
   export S3_BUCKET_DIR="$ARTIFACTS_BUCKET/$CONTEXT/$VERSION/"
   export ARTIFACT_SRC_DIR=$(shipctl get_resource_state $RES_REPO)
