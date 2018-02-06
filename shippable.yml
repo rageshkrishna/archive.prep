@@ -1,0 +1,28 @@
+resources:
+  - name: archive_prep_repo
+    type: gitRepo
+    integration: avinci_gh
+    pointer:
+      sourceName: shippable/archive.prep
+      branch: master
+
+  - name: archive_bits_access_cli
+    type: cliConfig
+    integration: aws_bits_access
+    pointer:
+      region: us-east-1
+
+jobs:
+  - name: s3_archive_prep
+    type: runSh
+    steps:
+      - IN: node_repo
+      - IN: archive_bits_access_cli
+        switch: off
+      - IN: archive_prep_repo
+        switch: off
+      - TASK:
+          script:
+            - pushd $(shipctl get_resource_state "archive_prep_repo")
+            - ./buildAndPushArchives.sh
+            - popd
