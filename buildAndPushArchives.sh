@@ -10,14 +10,14 @@ set_context() {
   export S3_BUCKET_DIR="$ARTIFACTS_BUCKET/$CONTEXT/$VERSION/"
   export ARTIFACT_SRC_DIR=$(shipctl get_resource_state $RES_REPO)
 
-  echo "export RES_REPO=$CONTEXT_repo"
+  echo "export RES_REPO=$RES_REPO"
   echo "export ARTIFACT_TAR=$ARTIFACT_TAR"
   echo "export S3_BUCKET_DIR=$S3_BUCKET_DIR"
   echo "export ARTIFACT_SRC_DIR=$ARTIFACT_SRC_DIR"
 }
 
 create_tar() {
-  pushd $RES_REPO
+  pushd $ARTIFACT_SRC_DIR
   echo "Creating tar $ARTIFACT_TAR..."
   rm -rf $ARTIFACT_TAR
   git archive --format=tar.gz --output=$ARTIFACT_TAR --prefix=$CONTEXT/ $VERSION
