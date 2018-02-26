@@ -3,7 +3,7 @@
 # Input parameters
 export ARTIFACTS_BUCKET="s3://shippable-artifacts"
 export VERSION=master
-export ZIP_ARTIFACTS_WHITELIST=("node")
+export ZIP_ARTIFACTS_WHITELIST=("node" "reqKick")
 
 set_context() {
   export RES_REPO=$CONTEXT"_repo"
