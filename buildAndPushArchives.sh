@@ -25,7 +25,7 @@ create_tar() {
   popd
 }
 
-push_to_s3() {
+push_tar_to_s3() {
   echo "Pushing to S3..."
   aws s3 cp --acl public-read "$ARTIFACT_TAR" "$S3_BUCKET_DIR"
 }
@@ -39,7 +39,7 @@ main() {
 
   set_context
   create_tar
-  push_to_s3
+  push_tar_to_s3
 }
 
 main
