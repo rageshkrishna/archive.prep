@@ -36,7 +36,7 @@ create_zip() {
   pushd $ARTIFACT_SRC_DIR
   echo "Creating tar $ARTIFACT_ZIP..."
   rm -rf $ARTIFACT_ZIP
-  git archive --format=zip --output=$ARTIFACT_ZIP --prefix=$CONTEXT/ $VERSION
+  git archive --format=zip --output=$ARTIFACT_ZIP $VERSION
   echo "Successfully created $ARTIFACT_ZIP"
   popd
 }
